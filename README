@@ -21,7 +21,7 @@ URL to sites I found interesting, and other examples that might serve useful for
 someone interested in extending this work.
 
 At present (Feb 2012) this project is really proof-of-concept because it doesn't
-use readily-available tools, etc.
+use readily-available tools, etc.  But - it does work on my machine ;-)
 
 The model:
 - U3 USB stick has 2 partitions, a U3-CDROM and a regular removeble drive
@@ -53,10 +53,21 @@ The issues:
    and "autoplay."  You'll get way more than you wanted to know!
 2) I'm a perl-boy with money, so my EXE is actually written in Perl
    and "compiled" into a stand-alone EXE using ActiveState tools.
-3) I still haven't figured out how IronKey exposes their hidden
+3) Some software (e.g., Citrix VM and others) mess with Autoplay and Autorun
+   because of the need to share USB ports over the VM connection.  This 
+   really messes with the plug-and-play autorun behavior.
+4) I still haven't figured out how IronKey exposes their hidden
    partition ONLY AFTER a password is entered.  Lots of black magic no doubt,
    and I don't have the time to reverse engineer it.
 
-Its a start.
+Possible next actions:
+1) get the CPP version of the U3-Autorun working (Andy Walker - Thanks!)
+   See:  http://sourceforge.net/projects/u3-autorun/
+2) Keep portable apps community in the loop:
+   See:  http://portableapps.com/node/27625
+3) Figure out how IronKey hides their partition and exposes it on-the-fly.
+4) Have fun with it!
+
+Anyway ... its a start.
 
 John Leonard, 2/25/2012
