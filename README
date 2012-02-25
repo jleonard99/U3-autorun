@@ -1,0 +1,11 @@
+U3-autorun
+
+I was exploring how to best integrate PortableApps, TrueCrypt and a U3-ready USB to create something that performs like an IronKey.  While I didn't get "there", I did make enough progress to post something to GitHub.
+
+The "nice" feature of U3-ready USB sticks is that they present a portion of their memory as a CD-ROM, enabling the use of autorun and autoplay features that were disabled (and rightly so) in Windows 7 and later service packs in other versions of Windows.
+
+At present this project encapsulates a make workflow so that from the command line all the steps necessary to rebuild ISO images for the CD-ROM portion of U3 sticks are automated.  I gathered the necessary tools, some examples in other languages, URL to sites I found interesting, and other examples that might serve useful for someone interested in extending this work.
+
+Its a start.
+
+John Leonard, 2/25/2012
