@@ -1,10 +1,61 @@
 U3-autorun
 
-I was exploring how to best integrate PortableApps, TrueCrypt and a U3-ready USB to create something that performs like an IronKey.  While I didn't get "there", I did make enough progress to post something to GitHub.
+I was exploring how to best integrate PortableApps, TrueCrypt and a U3-ready USB
+to create something that performs like an IronKey.  While I didn't get "there", I
+did make enough progress to post something to GitHub.
 
-The "nice" feature of U3-ready USB sticks is that they present a portion of their memory as a CD-ROM, enabling the use of autorun and autoplay features that were disabled (and rightly so) in Windows 7 and later service packs in other versions of Windows.
+The "nice" feature of U3-ready USB sticks is that they present a portion of their
+memory as a CD-ROM, enabling the use of autorun and autoplay features that were
+disabled (and rightly so) in Windows 7 and later service packs in other versions
+of Windows.
 
-At present this project encapsulates a make workflow so that from the command line all the steps necessary to rebuild ISO images for the CD-ROM portion of U3 sticks are automated.  I gathered the necessary tools, some examples in other languages, URL to sites I found interesting, and other examples that might serve useful for someone interested in extending this work.
+Scanning the web (as of Feb 2012) I found a number of different threads, lots
+of different tools and workflows (some accurate, some not, some mature, some not,
+some written obviously by blackhats, and some not), and in all cases, nothing 
+tidy and "makeable."
+
+At present this project encapsulates a make workflow so that from the command line
+all the steps necessary to rebuild ISO images for the CD-ROM portion of U3 sticks
+are automated.  I gathered the necessary tools, some examples in other languages,
+URL to sites I found interesting, and other examples that might serve useful for
+someone interested in extending this work.
+
+At present (Feb 2012) this project is really proof-of-concept because it doesn't
+use readily-available tools, etc.
+
+The model:
+- U3 USB stick has 2 partitions, a U3-CDROM and a regular removeble drive
+- U3 USB partition contains an autorun.inf plus EXE file.
+- When run, the EXE file on the U3-CDROM:
+  - looks for mounted removeable drives,
+  - looks for INI file in root of these drive,
+  - using info in INI file does stuff (like starting Portable apps) on drive
+
+The workflow:
+1) update the EXE file source and rebuild EXE
+2) update the files to be burned ISO-style to U3 CDROM partition on stick
+3) create ISO
+4) "burn" ISO to U3-CDROM memory
+
+The tools:
+1) I used perl for the EXE on the CDROM.  My branch also includes some
+   similar CPP code from another project similarily titled U3-autorun.
+2) I used PerlApp to convert the perl file to a standalone EXE.
+3) "mkisofs" is used to create an ISO image of a folder in the branch
+4) u3-tools is used to transfer the ISO image to the U3-CDROM partition
+   on the stick.
+5) The entire workflow is captured in a Makefile, make all automates
+   steps 1-4.
+
+The issues:
+1) autorun and autoplay are quite dangerous and their behaviors are
+   not longer consistent across platforms.  See WikiPedia for "autorun" 
+   and "autoplay."  You'll get way more than you wanted to know!
+2) I'm a perl-boy with money, so my EXE is actually written in Perl
+   and "compiled" into a stand-alone EXE using ActiveState tools.
+3) I still haven't figured out how IronKey exposes their hidden
+   partition ONLY AFTER a password is entered.  Lots of black magic no doubt,
+   and I don't have the time to reverse engineer it.
 
 Its a start.
 
